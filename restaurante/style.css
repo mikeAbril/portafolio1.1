@@ -1,0 +1,182 @@
+  .container-main {
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+            padding: 20px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin: 20px;
+            background-color: #fff;
+        }
+        
+        .opciones {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        #botonelinimar{
+            background-color: red;
+        }
+        #botoneditar{
+            background-color: orange;
+        }
+        #botonreservar{
+            background-color: black;
+        }
+       
+        
+        .table {
+            margin-top: 20px;
+        }
+        
+        .table th {
+            background-color: #198754;
+            color: white;
+            text-align: center;
+        }
+        
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .btn-actions {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+
+
+        .dataMesas{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .mesa{
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            background-color: beige;
+            width: 200px;
+            height: 150px;
+        }
+
+
+
+
+
+ 
+.mesa-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-width: 2px;
+}
+
+.mesa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.mesa-card.border-success {
+    background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
+}
+
+.mesa-card.border-danger {
+    background: linear-gradient(135deg, #fff8f8 0%, #f5e8e8 100%);
+}
+
+.mesa-card.border-warning {
+    background: linear-gradient(135deg, #fffef8 0%, #f5f2e8 100%);
+}
+
+.mesa-card.border-secondary {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.mesa-card .card-header {
+    font-weight: bold;
+    border-bottom: 2px solid;
+}
+
+.mesa-card.border-success .card-header {
+    background: rgba(25, 135, 84, 0.1);
+    border-bottom-color: #198754;
+}
+
+.mesa-card.border-danger .card-header {
+    background: rgba(220, 53, 69, 0.1);
+    border-bottom-color: #dc3545;
+}
+
+.mesa-card.border-warning .card-header {
+    background: rgba(255, 193, 7, 0.1);
+    border-bottom-color: #ffc107;
+}
+
+.mesa-card.border-secondary .card-header {
+    background: rgba(108, 117, 125, 0.1);
+    border-bottom-color: #6c757d;
+}
+
+.mesa-card .card-footer {
+    background: transparent;
+    border-top: none;
+}
+ 
+.container-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.opciones {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.table-container {
+    margin-top: 30px;
+}
+
+.table-container h4 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .col-md-4 {
+        margin-bottom: 15px;
+    }
+    
+    .opciones {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#bodyDataReservas tr {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#bodyDataReservas tr:hover {
+    background-color: rgba(25, 135, 84, 0.1);
+}
+
+#bodyDataReservas tr td:last-child {
+    cursor: default;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Reservas - Restaurant Hotel Diamonds</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-main">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-primary mb-0">📅 Gestión de Reservas</h3>
+            <a href="./index.html" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i> Volver a Mesas
+            </a>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="opciones mb-4">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#miModal">
+                <i class="bi bi-plus-circle"></i> Agregar Reserva
+            </button>
+            <button class="btn btn-info" onclick="pintarReservas()">
+                <i class="bi bi-arrow-clockwise"></i> Actualizar Lista
+            </button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="filtroFecha" class="form-label">Filtrar por fecha:</label>
+                <input type="date" id="filtroFecha" class="form-control" onchange="filtrarPorFecha()">
+            </div>
+            <div class="col-md-6">
+                <label for="filtroEstado" class="form-label">Filtrar por estado:</label>
+                <select id="filtroEstado" class="form-select" onchange="filtrarPorEstado()">
+                    <option value="">Todos los estados</option>
+                    <option value="pendiente">⏳ Pendiente</option>
+                    <option value="confirmada">✅ Confirmada</option>
+                    <option value="cancelada">❌ Cancelada</option>
+                    <option value="finalizada">🎉 Finalizada</option>
+                    <option value="noLlegaron">👻 No Show</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Modal para agregar/editar reserva -->
+        <div class="modal fade" id="miModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title">📝 Nueva Reserva</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="idReserva" class="form-label">ID de la Reserva: <span class="text-danger">*</span></label>
+                                <input type="text" id="idReserva" class="form-control" placeholder="Ej: RES001" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombre del Cliente: <span class="text-danger">*</span></label>
+                                <input type="text" id="nombre" class="form-control" placeholder="Nombre completo" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label for="capacidad" class="form-label">Número de Personas: <span class="text-danger">*</span></label>
+                                <input type="number" id="capacidad" class="form-control" placeholder="Ej: 4" min="1" max="20" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fechaReserva" class="form-label">Fecha de Reserva: <span class="text-danger">*</span></label>
+                                <input type="date" id="fechaReserva" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="horaReserva" class="form-label">Hora de Reserva: <span class="text-danger">*</span></label>
+                                <input type="time" id="horaReserva" class="form-control" min="08:00" max="20:00" required>
+                                <small class="text-muted">Horario: 8:00 AM - 8:00 PM</small>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="mesaAsignada" class="form-label">Mesa Asignada: <span class="text-danger">*</span></label>
+                                <select id="mesaAsignada" class="form-select" required>
+                                    <option value="">Seleccione una mesa</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="estado" class="form-label">Estado:  </label>
+                                <select id="estado" class="form-select">
+                                    <option value="pendiente">⏳ Pendiente</option>
+                                    <option value="confirmada">✅ Confirmada</option>
+                                    <option value="cancelada">❌ Cancelada</option>
+                                    <option value="finalizada">🎉 Finalizada</option>
+                                    <option value="noLlegaron">👻 No Show</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="ocacion" class="form-label">Ocasión/Evento:</label>
+                                <select id="ocacion" class="form-select">
+                                    <option value="">Seleccione una ocasión</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="nota" class="form-label">Notas/Recomendaciones:</label>
+                                <textarea id="nota" class="form-control" rows="3" placeholder="Alergias, preferencias, comentarios especiales..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle"></i> Cancelar
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="guardarReserva()">
+                            <i class="bi bi-save"></i> Guardar Reserva
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de reservas -->
+        <div class="table-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">📋 Lista de Reservas</h4>
+                <span class="badge bg-primary" id="contadorReservas">Total: 0</span>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-success">
+                        <tr>
+                            <th>ID Reserva</th>
+                            <th>Cliente</th>
+                            <th>Personas</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Ocasión</th>
+                            <th>Mesa</th>
+                            <th>Notas</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyDataReservas">
+                        <!-- Las reservas se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./reserva.js"></script>
+
+    
+    </body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soluciones</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./operaciones.js"></script>
+</head>
+<body>
+    <div class="principal">
+             
+        <div class="caja">
+
+                    <div class="nums">
+                        <input type="text" id="n1">
+                        <input type="text" id="n2">
+                    </div>
+
+                    <div class="operaciones">
+                        <div class="cajas">
+                            <input type="radio" id="suma" name="boton">
+                            <p>suma</p>
+                        </div>
+                        <div class="cajas">
+                            <input type="radio" id="resta" name="boton">
+                            <p>resta</p>
+                        </div>
+                        <div class="cajas">
+                            <input type="radio" id="multiplicacion" name="boton">
+                            <p>multiplicacion</p>
+                        </div>
+                        <div class="cajas">
+                            <input type="radio" id="divicion" name="boton">
+                            <p>divicion</p>
+                        </div> 
+                    
+                    </div>
+
+                    <button onclick="operacion()">=</button>
+
+                    <div class="resultado">
+                        <h1 id="resul"></h1>
+                    </div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>
